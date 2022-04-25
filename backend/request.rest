@@ -1,0 +1,28 @@
+GET http://localhost:5000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJuYW1lIjoicnVjY2kiLCJlbWFpbCI6InJ1Y2NpQGdtYWlsLmNvbSIsImlhdCI6MTY1MDg5MzM1MywiZXhwIjoxNjUwODkzMzczfQ.A9YWG89ahauP3P869wKnfglMwyA6wk1o7IixQk54QMs
+###
+
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+  "name": "rucci",
+  "email": "rucci@gmail.com",
+  "password": "123456",
+  "confPassword": "123456"
+}
+
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+  "email": "rucci@gmail.com",
+  "password": "123456"
+}
+
+###
+GET http://localhost:5000/token
+
+###
+DELETE http://localhost:5000/logout
