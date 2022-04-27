@@ -15,6 +15,7 @@ try{
     console.error(error)
 }
 
+app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.json())
 app.use(cors({ credentials: true, origin:'http://localhost:3000'}))
 app.use(cookieParser());

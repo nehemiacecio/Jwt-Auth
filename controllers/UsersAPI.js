@@ -16,22 +16,35 @@ export const getUsers = async (req, res) => {
 }
 
 export const Register = async (req, res) => {
-  const { firstName, lastName, email, password} = req.body;
-  console.log(req.body)
+  const { firstName, lastName, email, password } = req.body;
+  console.log(req.body);
+  console.log(firstName);
+  console.log(lastName);
+  console.log(email);
+  console.log(password);
+
   // if (password !== confPassword) return res.status(400).json({ msg: "Password dan Confirm Password tidak cocok" });
   // const salt = await bcrypt.genSalt();
   // const hashPassword = await bcrypt.hash(password, salt)
 
   try {
-    const registers =  {
-     firstName: firstName,
+    const registers = {
+      firstName: firstName,
       lastName: lastName,
       email: email,
       password: password
     }
-    const res = await axios.post('http://localhost:8080/api/users',registers)
-    const data = res.data
-    console.log(data)
+    await axios.post('http://localhost:8080/api/users', registers)
+      .then((responses) => {
+        console.log(responses.data);
+        return res.send(responses.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // const data = res.data
+    // console.log(data)
     // return res.send(registers.data)
     // res.json({ msg: "Register berhasil" });
   } catch (error) {
