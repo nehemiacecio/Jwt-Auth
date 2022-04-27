@@ -53,10 +53,18 @@ export const Register = async (req, res) => {
 }
 
 export const Login = async (req, res) => {
+  console.log(req.body.email);
   try {
-    const user = await axios.get('http://localhost:8080/api/users');
-    console.log(user.data[0]);
-    // return res.send(user.data);
+    // const user = await axios.get('http://localhost:8080/api/users/findOne',{
+    //   params: {
+    //     email: req.body.email
+    //   }
+    // });
+    const user = await axios.get('http://localhost:8080/api/users/'+req.body.email);
+    console.log(user.data);
+    return res.send(user.data);
+
+    await axios.put('/')
 
     const match = await bcrypt.compare(req.body.password, user[0].password);
     if (!match) return res.status(400).json({ msg: "Wrong Password" })
